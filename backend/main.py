@@ -35,6 +35,7 @@ app.add_middleware(
         "http://localhost:3000",
         "https://mentorai.vercel.app",
         "https://www.mentorai.app",
+        "https://mentoraitestphase.vercel.app/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
