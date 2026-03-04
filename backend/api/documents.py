@@ -2,7 +2,7 @@
 api/documents.py
 Document library — list, get, delete.
 """
-from __future__ import annotations
+
 from fastapi import APIRouter, Depends, HTTPException
 
 from api.auth import get_current_user, get_supabase_admin
