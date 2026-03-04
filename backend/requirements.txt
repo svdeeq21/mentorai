@@ -27,8 +27,8 @@ langchain-huggingface==0.1.0
 sentence-transformers==3.2.1
 
 # ── Document processing ───────────────────────────────────
-unstructured[pdf]==0.17.2
-unstructured-inference==0.7.36
+unstructured[pdf]>=0.17.2
+unstructured-inference
 pdf2image==1.17.0
 pillow==11.0.0
 pymupdf==1.24.14
