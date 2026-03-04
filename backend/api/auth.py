@@ -3,7 +3,7 @@ api/auth.py
 Auth helpers — verifies Supabase JWT on every protected request.
 """
 from __future__ import annotations
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Header
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 limiter = Limiter(key_func=get_remote_address)
