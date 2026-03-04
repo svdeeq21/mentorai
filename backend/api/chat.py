@@ -1,5 +1,3 @@
-# FILE: backend/api/chat.py
-from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -18,13 +16,11 @@ class ChatRequest(BaseModel):
     session_id: Optional[str] = None
 
 @router.post("/")
-@limiter.limit("30/minute")   # 30 messages per minute per IP
-async def chat(body: ChatRequest, user=Depends(get_current_user)):
+@limiter.limit("30/minute")
+async def chat(request: Request, body: ChatRequest, user=Depends(get_current_user)):
     sb = get_supabase_admin()
-
     if body.context_type not in ("document", "collection"):
         raise HTTPException(status_code=400, detail="context_type must be 'document' or 'collection'")
-
     # Save user message
     sb.table("chat_messages").insert({
         "user_id": user.id,
@@ -33,7 +29,6 @@ async def chat(body: ChatRequest, user=Depends(get_current_user)):
         "role": "user",
         "content": body.message,
     }).execute()
-
     # Get answer
     try:
         if body.context_type == "document":
@@ -43,14 +38,12 @@ async def chat(body: ChatRequest, user=Depends(get_current_user)):
     except Exception as e:
         import traceback; traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
-
     # Build metadata with source info
     metadata = {
         "answer_type": result["answer_type"],
         "model": result["model"],
         "sources": result.get("sources", []),
     }
-
     # Save assistant message
     sb.table("chat_messages").insert({
         "user_id": user.id,
@@ -60,7 +53,6 @@ async def chat(body: ChatRequest, user=Depends(get_current_user)):
         "content": result["answer"],
         "metadata": metadata,
     }).execute()
-
     return {
         "answer": result["answer"],
         "answer_type": result["answer_type"],
