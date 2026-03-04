@@ -1,10 +1,9 @@
-// FILE: frontend/src/app/study/[id]/page.tsx
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import { sendMessage, createChatSession, getDocuments, getDocumentSummary, Document } from '@/lib/api'
+import { sendMessage, getDocuments, getDocumentSummary, Document } from '@/lib/api'
 import { ArrowLeft, Send, Loader2, FileText, Bot, User, BookOpen, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
 
@@ -45,7 +44,6 @@ export default function StudyPage() {
   const docId  = params.id as string
 
   const [doc, setDoc]                   = useState<Document | null>(null)
-  const [sessionId, setSessionId]       = useState<string | null>(null)
   const [messages, setMessages]         = useState<Message[]>([])
   const [query, setQuery]               = useState('')
   const [thinking, setThinking]         = useState(false)
@@ -69,8 +67,6 @@ export default function StudyPage() {
       setDoc(found)
     })
 
-    createChatSession(docId).then(({ session_id }) => setSessionId(session_id)).catch(() => {})
-
     setSummaryLoading(true)
     getDocumentSummary(docId)
       .then(({ summary }) => { setSummary(summary); setSummaryLoading(false) })
@@ -89,7 +85,7 @@ export default function StudyPage() {
     setThinking(true)
     chatRef.current?.scrollIntoView({ behavior: 'smooth' })
     try {
-      const result = await sendMessage(docId, q, sessionId ?? undefined)
+      const result = await sendMessage('document', docId, q)
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: result.answer,
