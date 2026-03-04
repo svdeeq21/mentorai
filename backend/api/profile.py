@@ -2,7 +2,7 @@
 api/profile.py
 User profile & usage stats.
 """
-from __future__ import annotations
+
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends
 
