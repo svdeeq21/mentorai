@@ -1,5 +1,4 @@
 # MentorAI Backend Requirements
-# Generated for deployment
 
 # ── Web framework ─────────────────────────────────────────
 fastapi==0.115.0
@@ -28,7 +27,7 @@ langchain-huggingface==0.1.0
 sentence-transformers==3.2.1
 
 # ── Document processing ───────────────────────────────────
-unstructured[pdf]==0.16.5
+unstructured[pdf]==0.17.2
 unstructured-inference==0.7.36
 pdf2image==1.17.0
 pillow==11.0.0
