@@ -3,7 +3,6 @@ api/pipeline.py
 Handles document upload → background thread pipeline (no Celery needed locally).
 Frontend polls /status/{job_id} for progress.
 """
-from __future__ import annotations
 import uuid
 import threading
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, Request
