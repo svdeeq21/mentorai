@@ -1,5 +1,5 @@
 # FILE: backend/api/summary.py
-from __future__ import annotations
+
 from fastapi import APIRouter, Depends, HTTPException
 from langchain_core.messages import HumanMessage, SystemMessage
 from qdrant_client.models import Filter, FieldCondition, MatchValue
