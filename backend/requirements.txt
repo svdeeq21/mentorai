@@ -1,4 +1,5 @@
-# MentorAI Backend Requirements
+# MentorAI Backend Requirements - Production (Railway)
+# Excludes torch/CUDA/unstructured-inference to keep build under timeout
 
 # ── Web framework ─────────────────────────────────────────
 fastapi==0.115.0
@@ -22,13 +23,13 @@ groq==0.11.0
 # ── Vector DB ─────────────────────────────────────────────
 qdrant-client==1.12.1
 
-# ── Embeddings ────────────────────────────────────────────
+# ── Embeddings (CPU-only, no torch/CUDA) ──────────────────
 langchain-huggingface==0.1.0
 sentence-transformers==3.2.1
+torch==2.2.2+cpu --extra-index-url https://download.pytorch.org/whl/cpu
 
-# ── Document processing ───────────────────────────────────
+# ── Document processing (no unstructured-inference) ───────
 unstructured[pdf]>=0.17.2
-unstructured-inference
 pdf2image==1.17.0
 pillow==11.0.0
 pymupdf==1.24.14
