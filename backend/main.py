@@ -32,10 +32,7 @@ app.add_middleware(SlowAPIMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "https://mentorai.vercel.app",
-        "https://www.mentorai.app",
-        "https://mentoraitestphase.vercel.app/"
+        "https://mentoraitestphase.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
