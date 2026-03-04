@@ -2,7 +2,7 @@
 api/billing.py
 Flutterwave payment integration.
 """
-from __future__ import annotations
+
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
