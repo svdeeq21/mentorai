@@ -3,7 +3,7 @@ api/quiz.py
 Generate MCQ quizzes from document/collection context using Qdrant retrieval.
 Save quiz attempts to Supabase quiz_sessions table.
 """
-from __future__ import annotations
+
 import json
 import random
 from fastapi import APIRouter, Depends, HTTPException
