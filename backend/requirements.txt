@@ -1,6 +1,6 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.2.2+cpu
-torchvision==0.17.2+cpu
+
 # MentorAI Backend Requirements - Production (Railway)
 # Excludes torch/CUDA/unstructured-inference to keep build under timeout
 
@@ -29,7 +29,6 @@ qdrant-client==1.12.1
 # ── Embeddings (CPU-only, no torch/CUDA) ──────────────────
 langchain-huggingface==0.1.0
 sentence-transformers==3.2.1
-torch==2.2.2
 
 # ── Document processing (no unstructured-inference) ───────
 unstructured[pdf]>=0.17.2
